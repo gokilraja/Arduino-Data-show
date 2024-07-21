@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+  <head>
+
+    
+   
+    
+ 
+   <script type="module" src="app.js"></script>
+   
+
+    <style>
+        *{
+          padding: 0;
+          margin: 0;
+        }
+        body{
+          height: 100%;
+          width: 100%;
+          align-content:center ;
+          text-align: center;
+          justify-content: center;
+          /* background-image: url('index.jpg'); */
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          background-attachment: fixed;
+          
+        }
+        .com{
+          margin-left: 33%;
+          margin-top: 10%;
+          height: 300px;
+          width: 80vh;
+          text-align: center;
+          justify-content: center;
+           background-color: rgb(190, 187, 187); 
+           box-shadow: inset -5px -5px 10px rgb(78, 74, 74),
+                        -5px -5px 10px rgb(78, 74, 74);
+          transition: box-shadow 1s; 
+          border: none;
+           border-radius: 5%;
+           position: relative;
+        }
+        .com:hover{
+          box-shadow: inset 5px 5px 8px rgb(78, 74, 74),
+                      -5px -5px 8px rgb(78, 74, 74);
+          transition: box-shadow 1s ;
+        }
+        h1{
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          margin-top: 200px;
+          padding-top: 50px;
+          text-shadow: 5px 5px 3px pink;
+          color: rgb(240, 14, 183);
+          
+        }
+        #sample{
+          padding-top: 10%;
+          
+          
+        }
+        #input{
+          width: 300px;
+          height: 100px;
+          font-size: 50px;
+          border-radius: 10px;
+          border: none;
+          padding-left: 10px;
+          color: rgb(21, 24, 23);
+          box-shadow: 8px 8px 8px grey,
+                      inset 8px 5px 5px gray;
+          transition: box-shadow 1s;
+        }
+        #input:focus{
+          outline: none;
+          
+        }
+        #input:hover{
+          box-shadow: -8px -8px 8px grey,
+                      inset -8px -5px 5px gray;
+          transition: box-shadow 1s ;
+        }
+        .alert-open-error{
+
+          z-index: 1;
+          position: absolute;
+          top: 30%;
+          left: 20%;
+          /* z-index: -1; */
+          height: 28vh;
+          width: 300px;
+          background-color: rgb(0, 0, 0);
+          border-radius: 20px;
+          color: wheat;
+          box-shadow: inset 5px 5px 5px rgb(253, 31, 31),
+                              5px 5px 3px rgb(58, 206, 44) ;
+          
+          
+        }
+        .alert-close-error-c{
+          position: absolute;
+          top: 30%;
+          left: 20%;
+          z-index: -1;
+          height: 25vh;
+          width: 300px;
+          background-color: rgb(0, 0, 0);
+          border-radius: 20px;
+          color: wheat;
+          box-shadow: inset 5px 5px 5px rgb(253, 31, 31),
+                              5px 5px 3px rgb(58, 206, 44) ;
+          
+        }
+        .alert-open-error p{
+          font-size: 25px;
+          padding-top: 10px;
+          text-shadow: 2px 2px 2px pink;
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .alert-open-error button{
+            width: 20vh;
+            cursor: pointer;
+            height: 31px;
+            font-size: 15px;
+            border: none;
+            margin-top: 10px;
+            border-radius: 20px;
+            box-shadow: inset 5px 5px 5px rgb(58, 219, 44),
+                              5px 5px 3px rgb(253, 31, 31) ;
+            transition:box-shadow 1s;  
+        }
+        .alert-open-error button:hover{
+          box-shadow: inset -5px -5px 5px rgb(253, 31, 31),
+                      inset -8px -5px 5px rgb(58, 219, 44);
+          transition:box-shadow 1s;
+        }
+        .nod{
+          height: fit-content;
+          width: fit-content;
+          position: absolute;
+          top: 20%;
+          left: 2%;
+          transition: 1s;
+        }
+        .nod.bac{
+          top: -20%;
+          left: 20%;
+          transition: 1s;
+          size: 10px;
+        }
+        
+        .nod button{
+          font-size: 35px;
+          border: none;
+          padding: 10px;
+          border-radius: 20px;
+          outline: none;
+          /* pointer-events: none; */
+          box-shadow: inset 5px 5px 8px rgb(58, 219, 44),
+                              5px 5px 8px rgb(253, 31, 31) ;
+            transition:box-shadow 1s; 
+            text-shadow: 2px 2px 5px pink;
+        }
+        .nod button:hover{
+          box-shadow: inset 5px 5px 8px rgb(253, 31, 31),
+                       8px 5px 8px rgb(58, 219, 44);
+          transition:box-shadow 1s;
+        }
+    </style>
+
+  </head>
+  <!-- <body style="background-image: url('https://repository-images.githubusercontent.com/269429901/770d7f80-b935-11ea-84bd-fa797e1e6994');"> -->
+  <body style="background-image:url('index.jpg');">
+  
+    <div class="com"> 
+    <h1>Arduino to Node.js communication</h1>
+    <div id="sample">
+            <input id="input" placeholder="please wait!" type="text" autocomplete="off">
+    </div> 
+  
+     <div id="alert" class="alert-close-error-c">
+      <p id="p">CONGRATULATION!<br>data received from <b>COM</b><br>port</p>
+       <button id="but" onclick="closef()">OK</button> 
+     </div>
+    </div>
+    <div class="nod" id="nod" onclick="setTimeout(clearmsg,2000)">
+      <a href="192.168.27.27" target="_blank" ><button onclick="movenod()" id="node">click nodemcu result!</button></a>
+    </div>
+    <script src='\socket.io\socket.io.js'></script>
+    <script> 
+    
+    const cot = document.getElementById('but')
+    const input = document.getElementById('input')
+
+  //  const cv= document.getElementById('alert');
+    // cv.classList.add("alert-open-error");
+                     document.getElementById('alert').classList.remove("alert-close-error-c");
+                     document.getElementById('alert').classList.add("alert-open-error");
+    
+
+    function closef(){
+      document.getElementById('alert').classList.remove("alert-open-error");
+    document.getElementById('alert').classList.add("alert-close-error-c");
+       }
+    function movenod(){
+      document.getElementById('node').innerText="started...... ";
+      document.getElementById('nod').classList.add("bac")
+    }
+    function clearmsg(){
+      document.getElementById('node').innerText="click nodemcu result!";
+      document.getElementById('nod').classList.remove("bac")
+    }
+    </script>
+    <script>
+
+    var socket =  io() ;
+
+    socket.on('connect', function(){
+                 console.log('connected in node to html!');
+                 
+            });
+
+    socket.on('disconnect', function(){
+              console.log('disconnected!');
+            });
+      socket.on('data', function(data) {
+        
+        input.value = ` ${data}`;
+      }); 
+     
+    </script>
+   
+  
+
+  </body>
+</html>
